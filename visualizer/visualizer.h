@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 21:55:12 by azavrazh          #+#    #+#             */
-/*   Updated: 2019/01/16 19:54:45 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/05 17:24:03 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,26 @@
 # include <stdio.h>
 # include <time.h>
 
-typedef struct	s_coordinates
+# define UP 'w'
+# define DOWN 's'
+# define LEFT 'a'
+# define RIGHT 'd'
+# define COLOR 2
+typedef struct	s_vis
 {
-	int		x;
-	int		y;
-
-}				t_coo;
-
-typedef struct	s_map
-{
-	t_coo		mc;
 	char		**map;
-	t_coo		pc;
+	int			piece_x;
+	int			piece_y;
+	int			fin_x;
+	int			fin_y;
+	int			map_x;
+	int			map_y;
 	char		**piece;
-	t_coo		fin;
-	char		*o;
-	char		*x;
-
-	WINDOW		*m;
-	WINDOW		*p;
-
-}				t_map;
+	char		*player_1;
+	char		*player_2;
+	WINDOW		*win_map;
+	WINDOW		*win_piece;
+}				t_vis;
 
 enum			e_pcolors
 {
@@ -48,9 +47,8 @@ enum			e_pcolors
 	NEU
 };
 
-void			init_vis(t_map *m);
-void			print_winner(t_map *m);
-void			input_plat1(char *line, t_map *m);
-void			input_piece1(char *line, t_map *m);
+void			visualize(char *line, t_vis *vis);
+void			fill_with_dot(WINDOW *w, char mp);
+void			clear_window(WINDOW *w, int height, int width);
 
 #endif
