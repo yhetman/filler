@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 19:29:30 by yhetman           #+#    #+#             */
-/*   Updated: 2019/04/07 20:10:28 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/07 21:43:43 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 static void	fill_dots(WINDOW *w, char c)
 {
+	init_pair(1, 210, 210);
+	init_pair(2, 44, 44);
+	init_pair(3, 147, 147);
+	init_pair(4, COLOR_WHITE, COLOR_WHITE);
 	if (c == 'o' || c == 'O')
 		wattron(w, COLOR_PAIR(1));
 	else if (c == 'x' || c == 'X')
@@ -81,21 +85,6 @@ static void	get_plateau(char *line, t_vis *vis)
 
 static void	visualize(char *line, t_vis *vis)
 {
-	if (ft_strstr(line, "Plateau"))
-		get_plateau(line, vis);
-	else if ((vis->player_1 = ft_strstr(line, "== O fin: ")))
-		vis->fin_y = ft_atoi(vis->player_1 + 9);
-	else if ((vis->player_2 = ft_strstr(line, "== X fin: ")))
-		vis->fin_x = ft_atoi(vis->player_2 + 9);
-	free(line);
-}
-
-int			main(void)
-{
-	t_vis	v;
-	char	*line;
-
-	ft_bzero(&v, sizeof(t_vis));
 	initscr();
 	raw();
 	keypad(stdscr, true);
@@ -105,15 +94,37 @@ int			main(void)
 	noecho();
 	use_default_colors();
 	start_color();
-	init_pair(1, 210, 210);
-	init_pair(2, 44, 44);
-	init_pair(3, 147, 147);
-	init_pair(4, COLOR_WHITE, COLOR_WHITE);
 	while (get_next_line(0, &line) > 0)
-		visualize(line, &v);
+	{
+		if (ft_strstr(line, "Plateau"))
+			get_plateau(line, vis);
+		else if ((vis->player_1 = ft_strstr(line, "== O fin: ")))
+			vis->fin_y = ft_atoi(vis->player_1 + 9);
+		else if ((vis->player_2 = ft_strstr(line, "== X fin: ")))
+			vis->fin_x = ft_atoi(vis->player_2 + 9);
+		free(line);
+	}
+}
+
+int			main(void)
+{
+	t_vis	vis;
+	char	*line;
+
+	ft_bzero(&vis, sizeof(t_vis));
+	visualize(line, &vis);
 	endwin();
-	ft_printf("\n\t|My congratulations!|\n\n|Player %d won with %d points|\n\n",
-		(v.fin_x > v.fin_y) ? 2 : 1,
-		(v.fin_x > v.fin_y) ? v.fin_x : v.fin_y);
+	ft_printf("\n\n\n\n\n\n");
+	ft_printf("  \t\t\t\x1b[30;46m _____________________________ \t\033[0m\n");
+	ft_printf("  \t\t\t\x1b[30;46m|                             |\t\033[0m\n");
+	ft_printf("  \t\t\t\x1b[30;46m|     My congratulations!     |\t\033[0m\n");
+	ft_printf("  \t\t\t\x1b[30;46m|                             |\t\033[0m\n");
+	ft_printf("  \t\t\t\x1b[30;46m| Player %d won with %d points|\t\033[0m\n",
+		(vis.fin_x > vis.fin_y) ? 2 : 1,
+		(vis.fin_x > vis.fin_y) ? vis.fin_x : vis.fin_y);
+	ft_printf("  \t\t\t\x1b[30;46m|                             |\t\033[0m\n");
+	ft_printf("  \t\t\t\x1b[30;46m|_____________________________|\t\033[0m\n");
+	ft_printf("  \t\t\t\x1b[30;46m                               \t\033[0m\n");
+	ft_printf("\n\n\n\n\n\n");
 	return (0);
 }
