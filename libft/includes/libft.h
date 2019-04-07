@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/24 17:39:33 by yhetman           #+#    #+#             */
-/*   Updated: 2019/03/15 19:44:43 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/07 17:08:51 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct		s_color
 }					t_color;
 
 int					ft_display(char *argv);
-int					ft_rgb_to_int(t_color color);
+int					ft_rgb_to_int(int r, int g, int b);
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstiter(t_list *lst, void(*f)(t_list *elem));
 void				ft_lstdel(t_list **alst, void(*del)(void*, size_t));

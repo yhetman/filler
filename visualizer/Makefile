@@ -6,7 +6,7 @@
 #    By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/09/03 19:38:02 by azavrazh          #+#    #+#              #
-#    Updated: 2019/04/05 17:26:57 by yhetman          ###   ########.fr        #
+#    Updated: 2019/04/07 20:11:13 by yhetman          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ IFLAGS :=	-I . -I $(LIB_PATH)
 
 LIB :=		$(LIB_PATH)libft.a
 HFILES :=	visualizer
-FILES :=	visualizer yhetman_vis
+FILES :=	visualizer
 
 HDRS :=		$(addprefix $(INC_PATH), $(addsuffix .h, $(HFILES)))
 SRCS :=		$(addprefix $(SRC_PATH), $(addsuffix .c, $(FILES)))

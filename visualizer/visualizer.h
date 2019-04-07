@@ -6,7 +6,7 @@
 /*   By: yhetman <yhetman@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/03 21:55:12 by azavrazh          #+#    #+#             */
-/*   Updated: 2019/04/05 17:24:03 by yhetman          ###   ########.fr       */
+/*   Updated: 2019/04/07 20:11:02 by yhetman          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,10 @@
 # define VISUALIZER_H
 
 # include "../libft/includes/libft.h"
-# include <ncurses.h>
+# include <curses.h>
 # include <stdio.h>
 # include <time.h>
 
-# define UP 'w'
-# define DOWN 's'
-# define LEFT 'a'
-# define RIGHT 'd'
-# define COLOR 2
 typedef struct	s_vis
 {
 	char		**map;
@@ -35,20 +30,7 @@ typedef struct	s_vis
 	char		**piece;
 	char		*player_1;
 	char		*player_2;
-	WINDOW		*win_map;
-	WINDOW		*win_piece;
+	WINDOW		*win;
 }				t_vis;
-
-enum			e_pcolors
-{
-	P1 = 10,
-	P2,
-	ST,
-	NEU
-};
-
-void			visualize(char *line, t_vis *vis);
-void			fill_with_dot(WINDOW *w, char mp);
-void			clear_window(WINDOW *w, int height, int width);
 
 #endif
